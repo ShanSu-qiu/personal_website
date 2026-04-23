@@ -152,8 +152,8 @@ export function RubiksCube() {
     const deltaX = e.clientX - dragStart.current.x
     const deltaY = e.clientY - dragStart.current.y
     setRotation({
-      x: rotationStart.current.x - deltaY * 0.5,
-      y: rotationStart.current.y + deltaX * 0.5,
+      x: rotationStart.current.x - deltaY * 0.8,
+      y: rotationStart.current.y + deltaX * 0.8,
     })
   }
 
@@ -173,8 +173,8 @@ export function RubiksCube() {
     const deltaX = touch.clientX - dragStart.current.x
     const deltaY = touch.clientY - dragStart.current.y
     setRotation({
-      x: rotationStart.current.x - deltaY * 0.5,
-      y: rotationStart.current.y + deltaX * 0.5,
+      x: rotationStart.current.x - deltaY * 0.8,
+      y: rotationStart.current.y + deltaX * 0.8,
     })
   }
 
@@ -234,10 +234,12 @@ export function RubiksCube() {
 
         {/* 3D Cube */}
         <div
-          className="relative w-full h-full transition-transform duration-800 ease-in-out"
+          className="relative w-full h-full"
           style={{
             transformStyle: "preserve-3d",
             transform: `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
+            transition: isDragging ? "none" : "transform 800ms ease-in-out",
+            willChange: "transform",
           }}
         >
           {faces.map((face) => {
