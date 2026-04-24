@@ -1,10 +1,19 @@
 import type { Metadata } from 'next'
-import { Geist, Playfair_Display } from 'next/font/google'
+import { Geist, Instrument_Serif } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
-const _geist = Geist({ subsets: ["latin"] });
-const _playfair = Playfair_Display({ subsets: ["latin"], weight: ["400", "500", "600", "700"] });
+const geist = Geist({
+  subsets: ["latin"],
+  variable: "--font-geist",
+})
+
+const instrumentSerif = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+  variable: "--font-instrument-serif",
+})
 
 export const metadata: Metadata = {
   title: 'Portfolio - Interactive 3D Cube',
@@ -35,7 +44,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className="bg-background">
+    <html lang="en" className={`bg-background ${geist.variable} ${instrumentSerif.variable}`}>
       <body className="font-sans antialiased">
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}

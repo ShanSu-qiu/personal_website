@@ -4,8 +4,8 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: #0a0a0f;
-  --background-end: #1a1a2e;
+  --background: #FDFBF5;
+  --background-end: #FDFBF5;
   --foreground: rgba(255, 255, 255, 0.9);
   --card: rgba(255, 255, 255, 0.08);
   --card-foreground: rgba(255, 255, 255, 0.9);
@@ -29,8 +29,8 @@
 }
 
 @theme inline {
-  --font-sans: 'Geist', 'Geist Fallback', system-ui, sans-serif;
-  --font-serif: 'Playfair Display', 'Georgia', serif;
+  --font-sans: var(--font-geist), system-ui, sans-serif;
+  --font-serif: var(--font-instrument-serif), 'Georgia', serif;
   --color-background: var(--background);
   --color-background-end: var(--background-end);
   --color-foreground: var(--foreground);
@@ -64,7 +64,7 @@
   }
   body {
     @apply bg-background text-foreground;
-    background: linear-gradient(135deg, var(--background) 0%, var(--background-end) 100%);
+    background: var(--background);
     min-height: 100vh;
   }
 }
