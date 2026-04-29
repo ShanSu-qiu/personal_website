@@ -2,8 +2,6 @@ import Link from "next/link"
 import type { Section } from "@/lib/sections-config"
 
 export function CenterCard({ section }: { section: Section }) {
-  const showReadMore = section.id !== "contact"
-
   return (
     <div
       className="relative flex flex-col shrink-0"
@@ -37,27 +35,31 @@ export function CenterCard({ section }: { section: Section }) {
           marginBottom: 20,
         }}
       />
-      <p
-        className="font-serif flex-1"
-        style={{
-          fontSize: 15,
-          color: "#3D3324",
-          lineHeight: 1.5,
-          marginBottom: 16,
-        }}
-      >
-        {section.summary}
-      </p>
-      {showReadMore && (
+      <div className="font-serif flex-1" style={{ marginBottom: 16 }}>
+        {section.paragraphs.map((p, i) => (
+          <p
+            key={i}
+            style={{
+              fontSize: 15,
+              color: "#3D3324",
+              lineHeight: 1.5,
+              marginBottom: i < section.paragraphs.length - 1 ? 12 : 0,
+            }}
+          >
+            {p}
+          </p>
+        ))}
+      </div>
+      {section.learnMoreHref && (
         <Link
-          href={section.readMoreHref}
+          href={section.learnMoreHref}
           className="font-serif self-start underline underline-offset-4 transition-opacity hover:opacity-80"
           style={{
             fontSize: 14,
             color: "#8A6B3D",
           }}
         >
-          Read more →
+          Learn more →
         </Link>
       )}
     </div>
